@@ -11,11 +11,11 @@ import WeatherWidgets from "./components/widgets/WeatherWidgets";
 function App() {
   const { state } = useContext(AppContext);
   return (
-    <div className="App container mx-auto max-w-[72rem] flex min-h-screen flex-col py-4 px-[1rem] antialiased selection:bg-black selection:text-white md:px-[2rem] font-[raleway]">
-      {/* <NavBar /> */}
+    <div className="App container mx-auto max-w-[72rem] flex min-h-screen flex-col pb-4 px-[1rem] antialiased selection:bg-black selection:text-white md:px-[2rem] font-[raleway]">
+      <NavBar />
       <div className='flex-grow'>
         <div className='flex flex-col gap-4 md:flex-row'>
-          <div className='flex w-full min-w-[18rem] flex-col gap-4 md:w-1/2'>
+          <div className='flex w-full min-w-[18rem] lg:min-w-[28rem] flex-col gap-4 md:w-1/2'>
             <CurrentWeather data={state.hourly_data} />
             <ThreeHourForecast data={state.three_hour_forecast} />
           </div>

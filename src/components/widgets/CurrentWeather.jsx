@@ -39,7 +39,7 @@ const CurrentWeather = ({ data }) => {
                 </div>
             </div>
             <div className="flex justify-center py-7 text-8xl font-bold md:py-10">
-                {Math.round(data?.main.temp)}&deg;
+                {data?.main.temp && Math.round(data?.main.temp)}&deg;
             </div>
             <div>
                 <IconComponent

@@ -5,11 +5,9 @@ import IconComponent from '../IconComponent'
 import { Separator } from '../ui/separator'
 
 const ThreeHourForecast = ({ data }) => {
-    if (!data) return null
-
     return (
         <>
-            <Card className="h-fit shrink-0">
+            <Card className="h-fit min-h-[28rem] shrink-0">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <i>
@@ -115,7 +113,7 @@ const ThreeHourForecast = ({ data }) => {
                                     weatherCode={item.weather[0].id}
                                     className=" h-8 w-8"
                                 />
-                                <div className="flex w-[60%] max-w-[3rem] flex-row gap-0 overflow-hidden">
+                                <div className="flex w-[60%] max-w-[4rem] flex-row gap-0 overflow-hidden">
                                     <div className="flex w-full select-none flex-row items-center justify-between gap-2 pr-2 text-sm">
                                         <p className="flex min-w-fit justify-end text-neutral-600 dark:text-neutral-400">
                                             {Math.floor(item.main.temp_min)}&deg;

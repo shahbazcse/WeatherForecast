@@ -1,28 +1,10 @@
 export const DEFAULT_LOCATION = {
-    city: "Copenhagen",
+    city: "Delhi",
     coord: {
-        lat: "55.6760968",
-        lon: "12.5683371",
+        lat: "28.67",
+        lon: "77.23",
     },
 }
-
-export const DEFAULT_SUGGESTIONS = [
-    {
-        description: "London, United Kingdom",
-    },
-    {
-        description: "Paris, France",
-    },
-    {
-        description: "Amsterdam, Netherlands",
-    },
-    {
-        description: "Dublin, Ireland",
-    },
-    {
-        description: "Lisbon, Portugal",
-    },
-]
 
 export const OTHER_LARGE_CITIES = [
     {
@@ -45,8 +27,8 @@ export const OTHER_LARGE_CITIES = [
         city: "Tokyo",
         country: "Japan",
         coord: {
-            lat: 35.6764225,
-            lon: 139.650027,
+            lat: 35.6897,
+            lon: 139.6922,
         },
     },
     {
