@@ -16,7 +16,7 @@ export const AppProvider = ({ children }) => {
                 return {
                     ...state,
                     hourly_data: action.payload.hourly_data,
-                    ten_day_forecast: action.payload.ten_day_forecast,
+                    three_hour_forecast: action.payload.ten_day_forecast,
                     air_pollution: action.payload.air_pollution,
                     uv_index: action.payload.uv_index,
                 }
@@ -27,7 +27,7 @@ export const AppProvider = ({ children }) => {
 
     const initialState = {
         hourly_data: null,
-        ten_day_forecast: null,
+        three_hour_forecast: null,
         air_pollution: null,
         uv_index: null,
     };
@@ -49,7 +49,7 @@ export const AppProvider = ({ children }) => {
         // )
         // const UvIndexRequest = await getUVData(lat, lon)
 
-        // const [hourly_data, ten_day_forecast, air_pollution, uv_index] =
+        // const [hourly_data, three_hour_forecast, air_pollution, uv_index] =
         //     await Promise.all([
         //         HourlyDataRequest,
         //         TenDayForecastRequest,

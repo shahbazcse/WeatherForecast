@@ -7,10 +7,6 @@ import { Separator } from '../ui/separator'
 const ThreeHourForecast = ({ data }) => {
     if (!data) return null
 
-    const temperatures = data?.list?.map((item) => item.main)
-    const minTemperature = Math.min(...temperatures?.map((temp) => temp.temp_min))
-    const maxTemperature = Math.max(...temperatures?.map((temp) => temp.temp_max))
-
     return (
         <>
             <Card className="h-fit shrink-0">
@@ -102,7 +98,7 @@ const ThreeHourForecast = ({ data }) => {
                         3 Hour - Forecast
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-base font-normal md:mb-1">
+                <CardContent className=" text-base font-normal md:mb-1">
                     {data?.list?.slice(0, 14).map((item, i) => (
                         <div key={item.dt}>
                             <div className="flex w-full flex-row items-center justify-between gap-2 last:mb-0">

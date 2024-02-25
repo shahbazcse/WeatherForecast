@@ -9,14 +9,14 @@ const WeatherWidgets = ({
     data,
     airQuality,
     uvIndexForToday,
-    city,
 }) => {
+    if (!data && !airQuality && !uvIndexForToday) return null;
     return (
         <>
             <AirPollution airQuality={airQuality} className="order-2 md:order-1" />
-            <Card className="order-3 flex h-48 py-2 flex-col justify-between lg:order-2">
+            <Card className="order-3 flex h-56 py-2 flex-col justify-between lg:order-2">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -53,15 +53,15 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    {/* <p>{formatSunTimeWithAMPM(city.sunset, city.timezone)}</p> */}
+                    <p className="font-bold text-xl font-[roboto]">{formatSunTimeWithAMPM(data.sys.sunset, data.timezone)}</p>
                 </CardContent>
                 <CardFooter>
-                    {/* <p>Sunrise: {formatSunTimeWithAMPM(city.sunrise, city.timezone)}</p> */}
+                    <p className='text-gray-700'>Sunrise: {formatSunTimeWithAMPM(data.sys.sunrise, data.timezone)}</p>
                 </CardFooter>
             </Card>
-            <Card className="order-4 flex flex-col justify-evenly h-48 py-2 xl:order-3">
+            <Card className="order-4 flex flex-col justify-evenly h-56 py-2 xl:order-3">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -96,13 +96,13 @@ const WeatherWidgets = ({
                         Wind
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="flex justify-center p-0">
-                    <Compass speed={0} deg={0} />
+                <CardContent className="flex justify-center">
+                    <Compass speed={data.wind.speed} deg={data.wind.deg} />
                 </CardContent>
             </Card>
-            <Card className="order-5 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-5 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -127,9 +127,11 @@ const WeatherWidgets = ({
                         UV Index
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <p className="mb-2">
-                        {Math.round(uvIndexForToday)}
+                <CardContent className="flex flex-col gap-4">
+                    <p>
+                        <span className="font-bold text-xl font-[roboto]">
+                            {Math.round(uvIndexForToday)}
+                        </span>
                         <br></br>
                         {uvIndexForToday <= 2
                             ? "Low"
@@ -139,19 +141,21 @@ const WeatherWidgets = ({
                                     ? "High"
                                     : "Very High"}
                     </p>
-                    <Progress aria-label="UV Index" value={uvIndexForToday * 10} />
-                    <p>
-                        {uvIndexForToday <= 2
-                            ? "No protection needed."
-                            : uvIndexForToday <= 5
-                                ? "Wear sunscreen."
-                                : "Take precautions."}
-                    </p>
+                    <div className='flex flex-col gap-3'>
+                        <Progress aria-label="UV Index" value={uvIndexForToday * 10} />
+                        <p className='text-gray-700'>
+                            {uvIndexForToday <= 2
+                                ? "No protection needed."
+                                : uvIndexForToday <= 5
+                                    ? "Wear sunscreen."
+                                    : "Take precautions."}
+                        </p>
+                    </div>
                 </CardContent>
             </Card>
-            <Card className="order-6 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-6 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -226,24 +230,24 @@ const WeatherWidgets = ({
                 </CardHeader>
                 <CardContent>
                     <p>
-                        {data.rain?.["1h"] || 0}mm <br></br>in the last 3h
+                        <span className="font-bold text-xl font-[roboto]">{data?.rain?.["1h"] || 0}mm</span> <br></br>in the last 3h
                     </p>
                 </CardContent>
                 <CardFooter>
-                    <p>
-                        {data.rain?.["1h"] !== undefined
-                            ? data.rain["1h"] <= 0.2
+                    <p className='text-gray-700'>
+                        {data?.rain?.["1h"] !== undefined
+                            ? data?.rain["1h"] <= 0.2
                                 ? "Light rain or drizzle. An umbrella may come in handy."
-                                : data.rain["1h"] <= 2.5
+                                : data?.rain["1h"] <= 2.5
                                     ? "Moderate rain."
                                     : "Heavy rain."
                             : "Conditions are dry."}
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-7 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-7 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -262,22 +266,21 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p>{Math.floor(10)}&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data.main.feels_like)}&deg;</p>
                 </CardContent>
                 <CardFooter>
-                    {/* <p>
+                    <p className='text-gray-700'>
                         {data.main.feels_like < data.main.temp
                             ? "Feels colder than the actual temperature."
                             : data.main.feels_like > data.main.temp
                                 ? "Feels warmer than the actual temperature."
                                 : "Feels like the actual temperature."}
-                    </p> */}
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    </p>
                 </CardFooter>
             </Card>
-            <Card className="order-8 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-8 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -296,22 +299,21 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p>74&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data.main.humidity)}&deg;</p>
                 </CardContent>
                 <CardFooter>
-                    {/* <p>
+                    <p className='text-gray-700'>
                         {data.main.humidity < 40
                             ? "Low humidity. It might feel dry."
                             : data.main.humidity < 70
                                 ? "Moderate humidity. Comfortable conditions."
-                                : "High humidity. It might feel humid and uncomfortable."}
-                    </p> */}
-                    <p>Lorem ipsum dolor sit amet.</p>
+                                : "High humidity. It might feel humid today."}
+                    </p>
                 </CardFooter>
             </Card>
-            <Card className="order-9 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-9 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 viewBox="0 0 24 24"
@@ -334,21 +336,21 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p>{data.visibility / 1000} km</p>
+                    <p className="font-bold text-xl font-[roboto]">{data?.visibility / 1000} km</p>
                 </CardContent>
                 <CardFooter>
-                    <p>
-                        {data.visibility >= 10
+                    <p className='text-gray-700'>
+                        {data?.visibility >= 10
                             ? "It's perfectly clear right now."
-                            : data.visibility >= 5
+                            : data?.visibility >= 5
                                 ? "Good visibility."
                                 : "Poor visibility. Exercise caution while driving or moving around."}
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-10 flex h-48 py-2 flex-col justify-between">
+            <Card className="order-10 flex h-56 py-2 flex-col justify-between">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -368,18 +370,16 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    {/* <p>{data.main.pressure} hPa</p> */}
-                    <p>1015 hPa</p>
+                    <p className="font-bold text-xl font-[roboto]">{data?.main.pressure} hPa</p>
                 </CardContent>
                 <CardFooter>
-                    {/* <p>
+                    <p className='text-gray-700'>
                         {data.main.pressure < 1000
                             ? "Low pressure. Expect changes in the weather."
                             : data.main.pressure >= 1000 && data.main.pressure <= 1010
                                 ? "Normal pressure. Typical weather conditions."
                                 : "High pressure. Expect stable and clear weather."}
-                    </p> */}
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    </p>
                 </CardFooter>
             </Card>
         </>

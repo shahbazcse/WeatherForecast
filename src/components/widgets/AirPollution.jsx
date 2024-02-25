@@ -7,6 +7,7 @@ const AirPollution = ({
     airQuality,
     className,
 }) => {
+    const AQI = airQuality?.list[0].main.aqi;
     return (
         <Card
             className={cn(
@@ -63,22 +64,22 @@ const AirPollution = ({
                 </CardTitle>
             </CardHeader>
             <CardContent className="my-auto">
-                <Progress aria-label="Air pollution" value={10 * 10} />
+                <Progress aria-label="Air pollution" value={AQI * 10} />
             </CardContent>
             <CardFooter>
-                {/* <p>
-                    {airQuality.main.aqi < 50
+                <p className='text-gray-700'>
+                    {AQI < 50
                         ? "Air quality is good."
-                        : airQuality.main.aqi < 100
+                        : AQI < 100
                             ? "Air quality is moderate."
-                            : airQuality.main.aqi < 150
+                            : AQI < 150
                                 ? "Air quality is unhealthy for sensitive groups."
-                                : airQuality.main.aqi < 200
+                                : AQI < 200
                                     ? "Air quality is unhealthy."
-                                    : airQuality.main.aqi < 300
+                                    : AQI < 300
                                         ? "Air quality is very unhealthy."
                                         : "Air quality is hazardous."}
-                </p> */}
+                </p>
             </CardFooter>
         </Card>
     )

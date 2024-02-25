@@ -3,8 +3,8 @@ import React from 'react';
 const Compass = ({ speed, deg }) => {
     return (
         <>
-            <div className="relative -mt-5 flex h-[10rem] w-[10rem] items-center justify-center md:-mt-5 xl:-mt-10 md:h-[10rem] md:w-[10rem]">
-                <div className="absolute text-sm font-semibold">
+            <div className="relative -mt-8 flex h-[10rem] w-[10rem] items-center justify-center xl:-mt-10 md:h-[10rem] md:w-[10rem]">
+                <div className="absolute text-md font-semibold font-[roboto]">
                     {Math.round(speed)}m/s
                 </div>
                 <svg
