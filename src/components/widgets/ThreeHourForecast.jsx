@@ -1,14 +1,15 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { convertToDate } from '../../lib/dateUtils'
+import { convertToDate, formatSunTimeWithAMPM } from '../../lib/dateUtils'
 import IconComponent from '../IconComponent'
-import TemperatureRange from '../TemperatureRange'
 import { Separator } from '../ui/separator'
 
-const TenDayForecast = ({ data }) => {
-    // const temperatures = data.list.map((item) => item.temp)
-    // const minTemperature = Math.min(...temperatures.map((temp) => temp.min))
-    // const maxTemperature = Math.max(...temperatures.map((temp) => temp.max))
+const ThreeHourForecast = ({ data }) => {
+    if (!data) return null
+
+    const temperatures = data?.list?.map((item) => item.main)
+    const minTemperature = Math.min(...temperatures?.map((temp) => temp.temp_min))
+    const maxTemperature = Math.max(...temperatures?.map((temp) => temp.temp_max))
 
     return (
         <>
@@ -98,45 +99,45 @@ const TenDayForecast = ({ data }) => {
                                 />
                             </svg>
                         </i>
-                        10-Day Forecast
+                        3 Hour - Forecast
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2 text-base font-normal md:mb-1">
-                    {/* {data.list.map((item, i) => (
+                    {data?.list?.slice(0, 14).map((item, i) => (
                         <div key={item.dt}>
                             <div className="flex w-full flex-row items-center justify-between gap-2 last:mb-0">
-                                <p className="min-w-[3rem] font-medium">
+                                <p className="min-w-[7rem] font-medium">
                                     {i === 0
                                         ? "Today"
-                                        : convertToDate(data.city.timezone, item.dt, "short")}
+                                        :
+                                        <span>
+                                            {convertToDate(data.city.timezone, item.dt, "short")} - {""}
+                                            {formatSunTimeWithAMPM(item.dt, data?.city.timezone)}
+                                        </span>}
                                 </p>
                                 <IconComponent
                                     weatherCode={item.weather[0].id}
                                     className=" h-8 w-8"
                                 />
-                                <div className="flex w-[60%] flex-row gap-2 overflow-hidden">
+                                <div className="flex w-[60%] max-w-[3rem] flex-row gap-0 overflow-hidden">
                                     <div className="flex w-full select-none flex-row items-center justify-between gap-2 pr-2 text-sm">
-                                        <p className="flex w-[3rem] min-w-fit justify-end text-neutral-600 dark:text-neutral-400">
-                                            {Math.floor(item.temp.min)}&deg;
+                                        <p className="flex min-w-fit justify-end text-neutral-600 dark:text-neutral-400">
+                                            {Math.floor(item.main.temp_min)}&deg;
                                         </p>
-                                        <TemperatureRange
-                                            min={0}
-                                            max={10}
-                                            value={[item.temp.min, item.temp.max]}
-                                        />
-                                        <p className="flex w-[3rem] min-w-fit justify-end">
-                                            {Math.floor(item.temp.max)}&deg;
+                                        {"-"}
+                                        <p className="flex min-w-fit justify-end">
+                                            {Math.floor(item.main.temp_max)}&deg;
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            {i !== data.list.length - 1 && <Separator className="mt-3" />}
+                            {i !== data?.list.length - 1 && <Separator className="mt-3" />}
                         </div>
-                    ))} */}
+                    ))}
                 </CardContent>
             </Card>
         </>
     )
 }
 
-export default TenDayForecast
+export default ThreeHourForecast

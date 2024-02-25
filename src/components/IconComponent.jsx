@@ -1,4 +1,4 @@
-// import { weatherIconMappings } from "@/lib/iconMap"
+import { weatherIconMappings } from "../lib/iconMap"
 
 export default function IconComponent({
     weatherCode,
@@ -6,13 +6,14 @@ export default function IconComponent({
     className,
 }) {
 
+    if (!weatherCode) return null;
+
     const iconNameKey = x ? `${weatherCode}${x}` : weatherCode
-    const iconName = "cloud"
+    const iconName = weatherIconMappings[iconNameKey]
 
     return (
         <div className={`relative text-white ${className}`}>
             <img
-                fill
                 alt={"Icon"}
                 src={require(`../assets/icons/wi-${iconName}.svg`)}
                 className="select-none"
