@@ -52,10 +52,10 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.sys?.sunset && formatSunTimeWithAMPM(data?.sys?.sunset, data?.timezone)}</p>
+                    <p className="font-bold text-xl font-[roboto]">{data?.sys?.sunset ? formatSunTimeWithAMPM(data?.sys?.sunset, data?.timezone) : "00:00"}</p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>Sunrise: {data?.sys?.sunrise && formatSunTimeWithAMPM(data?.sys?.sunrise, data?.timezone)}</p>
+                    <p className='text-gray-700'>Sunrise: {data?.sys?.sunrise ? formatSunTimeWithAMPM(data?.sys?.sunrise, data?.timezone) : "00:00"}</p>
                 </CardFooter>
             </Card>
             <Card className="order-4 flex flex-col justify-evenly h-56 py-2 xl:order-3">
@@ -129,7 +129,7 @@ const WeatherWidgets = ({
                 <CardContent className="flex flex-col gap-4">
                     <p>
                         <span className="font-bold text-xl font-[roboto]">
-                            {uvIndexForToday && Math.round(uvIndexForToday)}
+                            {Math.round(uvIndexForToday) | 0}
                         </span>
                         <br></br>
                         {uvIndexForToday | 0 <= 2
@@ -265,7 +265,7 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.main?.feels_like && Math.floor(data?.main?.feels_like)}&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data?.main?.feels_like) | 0}&deg;</p>
                 </CardContent>
                 <CardFooter>
                     <p className='text-gray-700'>
@@ -298,7 +298,7 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.main?.humidity && Math.floor(data?.main?.humidity)}&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data?.main?.humidity) | 0}&deg;</p>
                 </CardContent>
                 <CardFooter>
                     <p className='text-gray-700'>
@@ -335,7 +335,7 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.visibility / 1000} km</p>
+                    <p className="font-bold text-xl font-[roboto]">{data?.visibility ? data?.visibility / 1000 : 0} km</p>
                 </CardContent>
                 <CardFooter>
                     <p className='text-gray-700'>
@@ -369,7 +369,7 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.main?.pressure} hPa</p>
+                    <p className="font-bold text-xl font-[roboto]">{data?.main?.pressure | 0} hPa</p>
                 </CardContent>
                 <CardFooter>
                     <p className='text-gray-700'>

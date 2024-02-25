@@ -5,7 +5,7 @@ const Compass = ({ speed, deg }) => {
         <>
             <div className="relative -mt-8 flex h-[10rem] w-[10rem] items-center justify-center xl:-mt-10 md:h-[10rem] md:w-[10rem]">
                 <div className="absolute text-md font-semibold font-[roboto]">
-                    {Math.round(speed)}m/s
+                    {speed ? Math.round(speed) : 0}m/s
                 </div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

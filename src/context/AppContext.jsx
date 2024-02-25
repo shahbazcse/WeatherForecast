@@ -69,8 +69,6 @@ export const AppProvider = ({ children }) => {
         }
     }, []);
 
-    console.log(state);
-
     return (
         <AppContext.Provider value={{ state, dispatch }}>
             {children}

@@ -97,6 +97,7 @@ const ThreeHourForecast = ({ data }) => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className=" text-base font-normal md:mb-1">
+                    {!data && "Loading..."}
                     {data?.list?.slice(0, 14).map((item, i) => (
                         <div key={item.dt}>
                             <div className="flex w-full flex-row items-center justify-between gap-2 last:mb-0">
