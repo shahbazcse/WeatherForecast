@@ -44,6 +44,10 @@ export function CommandDialogDemo() {
             ]);
 
         dispatch({ type: "UPDATE_LOCATION", payload: { hourly_data, ten_day_forecast, air_pollution, uv_index } })
+
+        const appTitle = document.getElementById("app_title");
+        appTitle.innerHTML = `${hourly_data.name} - Weather Forecast`;
+
         setOpen(false)
     }
 

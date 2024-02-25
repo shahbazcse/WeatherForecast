@@ -55,7 +55,11 @@ export const AppProvider = ({ children }) => {
                 UvIndexRequest,
             ]);
 
-        dispatch({ type: "UPDATE_LOCATION", payload: { hourly_data, ten_day_forecast, air_pollution, uv_index } })
+        dispatch({ type: "UPDATE_LOCATION", payload: { hourly_data, ten_day_forecast, air_pollution, uv_index } });
+
+        const appTitle = document.getElementById("app_title");
+        appTitle.innerHTML = `${hourly_data.name} - Weather Forecast`;
+
     }
 
     useEffect(() => {
