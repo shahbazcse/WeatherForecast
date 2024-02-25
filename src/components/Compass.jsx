@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Compass = ({ speed, deg }) => {
     return (
@@ -444,7 +444,7 @@ const Compass = ({ speed, deg }) => {
                 </svg>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Compass
+export default Compass;

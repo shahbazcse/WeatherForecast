@@ -1,15 +1,10 @@
-import { weatherIconMappings } from "../lib/iconMap"
+import { weatherIconMappings } from "../lib/iconMap";
 
-export default function IconComponent({
-    weatherCode,
-    x,
-    className,
-}) {
-
+export default function IconComponent({ weatherCode, x, className }) {
     if (!weatherCode) return null;
 
-    const iconNameKey = x ? `${weatherCode}${x}` : weatherCode
-    const iconName = weatherIconMappings[iconNameKey]
+    const iconNameKey = x ? `${weatherCode}${x}` : weatherCode;
+    const iconName = weatherIconMappings[iconNameKey];
 
     return (
         <div className={`relative text-white ${className}`}>
@@ -19,5 +14,5 @@ export default function IconComponent({
                 className="select-none"
             />
         </div>
-    )
+    );
 }

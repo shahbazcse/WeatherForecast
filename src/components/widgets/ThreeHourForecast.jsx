@@ -1,8 +1,8 @@
-import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { convertToDate, formatSunTimeWithAMPM } from '../../lib/dateUtils'
-import IconComponent from '../IconComponent'
-import { Separator } from '../ui/separator'
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { convertToDate, formatSunTimeWithAMPM } from "../../lib/dateUtils";
+import IconComponent from "../IconComponent";
+import { Separator } from "../ui/separator";
 
 const ThreeHourForecast = ({ data }) => {
     return (
@@ -102,13 +102,15 @@ const ThreeHourForecast = ({ data }) => {
                         <div key={item.dt}>
                             <div className="flex w-full flex-row items-center justify-between gap-2 last:mb-0">
                                 <p className="min-w-[7rem] font-medium">
-                                    {i === 0
-                                        ? "Today"
-                                        :
+                                    {i === 0 ? (
+                                        "Today"
+                                    ) : (
                                         <span>
-                                            {convertToDate(data.city.timezone, item.dt, "short")} - {""}
+                                            {convertToDate(data.city.timezone, item.dt, "short")} -{" "}
+                                            {""}
                                             {formatSunTimeWithAMPM(item.dt, data?.city.timezone)}
-                                        </span>}
+                                        </span>
+                                    )}
                                 </p>
                                 <IconComponent
                                     weatherCode={item.weather[0].id}
@@ -132,7 +134,7 @@ const ThreeHourForecast = ({ data }) => {
                 </CardContent>
             </Card>
         </>
-    )
-}
+    );
+};
 
-export default ThreeHourForecast
+export default ThreeHourForecast;

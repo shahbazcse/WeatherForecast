@@ -4,7 +4,7 @@ export const DEFAULT_LOCATION = {
         lat: "28.67",
         lon: "77.23",
     },
-}
+};
 
 export const OTHER_LARGE_CITIES = [
     {
@@ -47,4 +47,4 @@ export const OTHER_LARGE_CITIES = [
             lon: -46.6358888,
         },
     },
-]
+];

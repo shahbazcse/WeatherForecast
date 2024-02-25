@@ -1,12 +1,15 @@
-import React from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
-import { cn } from '../../lib/utils'
-import { Progress } from '../ui/progress'
+import React from "react";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import { cn } from "../../lib/utils";
+import { Progress } from "../ui/progress";
 
-const AirPollution = ({
-    airQuality,
-    className,
-}) => {
+const AirPollution = ({ airQuality, className }) => {
     const AQI = airQuality?.list[0].main.aqi;
     return (
         <Card
@@ -67,7 +70,7 @@ const AirPollution = ({
                 <Progress aria-label="Air pollution" value={AQI * 10} />
             </CardContent>
             <CardFooter>
-                <p className='text-gray-700'>
+                <p className="text-gray-700">
                     {AQI < 50
                         ? "Air quality is good."
                         : AQI < 100
@@ -82,7 +85,7 @@ const AirPollution = ({
                 </p>
             </CardFooter>
         </Card>
-    )
-}
+    );
+};
 
-export default AirPollution
+export default AirPollution;

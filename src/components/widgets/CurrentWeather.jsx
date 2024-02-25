@@ -1,8 +1,8 @@
-import React from 'react'
-import { Card } from '../ui/card'
-import Clock from '../Clock'
-import IconComponent from '../IconComponent'
-import { convertToDate } from '../../lib/dateUtils'
+import React from "react";
+import { Card } from "../ui/card";
+import Clock from "../Clock";
+import IconComponent from "../IconComponent";
+import { convertToDate } from "../../lib/dateUtils";
 
 const CurrentWeather = ({ data }) => {
     const initial = new Date();
@@ -11,8 +11,14 @@ const CurrentWeather = ({ data }) => {
             <div className="absolute " />
             <div>
                 <div className="flex justify-between text-lg font-semibold">
-                    <span>{data?.dt && convertToDate(data?.timezone, data?.dt, "long")}</span>
-                    {data?.timezone ? <Clock initial={initial} timezone={data?.timezone} /> : "Loading..."}
+                    <span>
+                        {data?.dt && convertToDate(data?.timezone, data?.dt, "long")}
+                    </span>
+                    {data?.timezone ? (
+                        <Clock initial={initial} timezone={data?.timezone} />
+                    ) : (
+                        "Loading..."
+                    )}
                 </div>
                 <div className="text-md mt-2 flex font-bold">
                     <span>{data?.name}</span>
@@ -49,12 +55,18 @@ const CurrentWeather = ({ data }) => {
                 />
                 <div className="font-semibold">{data?.weather[0].main}</div>
                 <div className="flex gap-2 dark:text-neutral-500">
-                    <span>H: {data?.main.temp_max ? Math.round(data?.main.temp_max) : "0"}&deg;</span>
-                    <span>L: {data?.main.temp_max ? Math.round(data?.main.temp_min) : "0"}&deg;</span>
+                    <span>
+                        H: {data?.main.temp_max ? Math.round(data?.main.temp_max) : "0"}
+                        &deg;
+                    </span>
+                    <span>
+                        L: {data?.main.temp_max ? Math.round(data?.main.temp_min) : "0"}
+                        &deg;
+                    </span>
                 </div>
             </div>
         </Card>
-    )
-}
+    );
+};
 
-export default CurrentWeather
+export default CurrentWeather;

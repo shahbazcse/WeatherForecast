@@ -1,15 +1,17 @@
-import React from 'react'
-import AirPollution from './AirPollution'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
-import { Progress } from '../ui/progress'
-import Compass from '../Compass'
-import { formatSunTimeWithAMPM } from '../../lib/dateUtils'
+import React from "react";
+import AirPollution from "./AirPollution";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import { Progress } from "../ui/progress";
+import Compass from "../Compass";
+import { formatSunTimeWithAMPM } from "../../lib/dateUtils";
 
-const WeatherWidgets = ({
-    data,
-    airQuality,
-    uvIndexForToday,
-}) => {
+const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
     return (
         <>
             <AirPollution airQuality={airQuality} className="order-2 md:order-1" />
@@ -52,10 +54,19 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.sys?.sunset ? formatSunTimeWithAMPM(data?.sys?.sunset, data?.timezone) : "00:00"}</p>
+                    <p className="font-bold text-xl font-[roboto]">
+                        {data?.sys?.sunset
+                            ? formatSunTimeWithAMPM(data?.sys?.sunset, data?.timezone)
+                            : "00:00"}
+                    </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>Sunrise: {data?.sys?.sunrise ? formatSunTimeWithAMPM(data?.sys?.sunrise, data?.timezone) : "00:00"}</p>
+                    <p className="text-gray-700">
+                        Sunrise:{" "}
+                        {data?.sys?.sunrise
+                            ? formatSunTimeWithAMPM(data?.sys?.sunrise, data?.timezone)
+                            : "00:00"}
+                    </p>
                 </CardFooter>
             </Card>
             <Card className="order-4 flex flex-col justify-evenly h-56 py-2 xl:order-3">
@@ -132,7 +143,7 @@ const WeatherWidgets = ({
                             {Math.round(uvIndexForToday) | 0}
                         </span>
                         <br></br>
-                        {uvIndexForToday | 0 <= 2
+                        {uvIndexForToday | (0 <= 2)
                             ? "Low"
                             : uvIndexForToday <= 5
                                 ? "Moderate"
@@ -140,9 +151,12 @@ const WeatherWidgets = ({
                                     ? "High"
                                     : "Very High"}
                     </p>
-                    <div className='flex flex-col gap-3'>
-                        <Progress aria-label="UV Index" value={(uvIndexForToday | 0) * 10} />
-                        <p className='text-gray-700'>
+                    <div className="flex flex-col gap-3">
+                        <Progress
+                            aria-label="UV Index"
+                            value={(uvIndexForToday | 0) * 10}
+                        />
+                        <p className="text-gray-700">
                             {uvIndexForToday <= 2
                                 ? "No protection needed."
                                 : uvIndexForToday <= 5
@@ -229,11 +243,14 @@ const WeatherWidgets = ({
                 </CardHeader>
                 <CardContent>
                     <p>
-                        <span className="font-bold text-xl font-[roboto]">{data?.rain?.["1h"] || 0}mm</span> <br></br>in the last 3h
+                        <span className="font-bold text-xl font-[roboto]">
+                            {data?.rain?.["1h"] || 0}mm
+                        </span>{" "}
+                        <br></br>in the last 3h
                     </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>
+                    <p className="text-gray-700">
                         {data?.rain?.["1h"] !== undefined
                             ? data?.rain["1h"] <= 0.2
                                 ? "Light rain or drizzle. An umbrella may come in handy."
@@ -265,10 +282,12 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data?.main?.feels_like) | 0}&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">
+                        {Math.floor(data?.main?.feels_like) | 0}&deg;
+                    </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>
+                    <p className="text-gray-700">
                         {data?.main?.feels_like < data?.main?.temp
                             ? "Feels colder than the actual temperature."
                             : data?.main?.feels_like > data?.main?.temp
@@ -298,10 +317,12 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{Math.floor(data?.main?.humidity) | 0}&deg;</p>
+                    <p className="font-bold text-xl font-[roboto]">
+                        {Math.floor(data?.main?.humidity) | 0}&deg;
+                    </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>
+                    <p className="text-gray-700">
                         {data?.main?.humidity < 40
                             ? "Low humidity. It might feel dry."
                             : data?.main?.humidity < 70
@@ -335,10 +356,12 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.visibility ? data?.visibility / 1000 : 0} km</p>
+                    <p className="font-bold text-xl font-[roboto]">
+                        {data?.visibility ? data?.visibility / 1000 : 0} km
+                    </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>
+                    <p className="text-gray-700">
                         {data?.visibility >= 10
                             ? "It's perfectly clear right now."
                             : data?.visibility >= 5
@@ -369,10 +392,12 @@ const WeatherWidgets = ({
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="font-bold text-xl font-[roboto]">{data?.main?.pressure | 0} hPa</p>
+                    <p className="font-bold text-xl font-[roboto]">
+                        {data?.main?.pressure | 0} hPa
+                    </p>
                 </CardContent>
                 <CardFooter>
-                    <p className='text-gray-700'>
+                    <p className="text-gray-700">
                         {data?.main?.pressure < 1000
                             ? "Low pressure. Expect changes in the weather."
                             : data?.main?.pressure >= 1000 && data?.main?.pressure <= 1010
@@ -382,7 +407,7 @@ const WeatherWidgets = ({
                 </CardFooter>
             </Card>
         </>
-    )
-}
+    );
+};
 
-export default WeatherWidgets
+export default WeatherWidgets;
