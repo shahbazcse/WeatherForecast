@@ -16,7 +16,7 @@ function App() {
       <NavBar />
       <div className="flex-grow">
         <div className="flex flex-col gap-4 md:flex-row">
-          <div className="flex w-full min-w-[18rem] lg:min-w-[28rem] flex-col gap-4 md:w-1/2">
+          <div className="flex w-full min-w-[18rem] lg:min-w-[28rem] flex-col gap-7 md:w-1/2">
             <CurrentWeather data={state.hourly_data} />
             <ThreeHourForecast data={state.three_hour_forecast} />
           </div>
