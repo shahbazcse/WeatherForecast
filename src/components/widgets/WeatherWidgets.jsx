@@ -1,5 +1,4 @@
 import React from "react";
-import AirPollution from "./AirPollution";
 import {
     Card,
     CardContent,
@@ -11,11 +10,10 @@ import { Progress } from "../ui/progress";
 import Compass from "../Compass";
 import { formatSunTimeWithAMPM } from "../../lib/dateUtils";
 
-const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
+const WeatherWidgets = ({ data, uvIndexForToday }) => {
     return (
-        <>
-            <AirPollution airQuality={airQuality} className="order-2 md:order-1" />
-            <Card className="order-3 flex h-56 py-2 flex-col justify-between lg:order-2">
+        <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2">
+            <Card className="flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -69,7 +67,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-4 flex flex-col justify-evenly h-56 py-2 xl:order-3">
+            <Card className="flex flex-col justify-evenly h-60 lg:h-56 py-2">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -110,7 +108,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     <Compass speed={data?.wind?.speed} deg={data?.wind?.deg} />
                 </CardContent>
             </Card>
-            <Card className="order-5 flex h-56 py-2 flex-col justify-between">
+            <Card className="flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -166,7 +164,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </div>
                 </CardContent>
             </Card>
-            <Card className="order-6 flex h-56 py-2 flex-col justify-between">
+            <Card className=" flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -261,7 +259,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-7 flex h-56 py-2 flex-col justify-between">
+            <Card className=" flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -296,7 +294,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-8 flex h-56 py-2 flex-col justify-between">
+            <Card className=" flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -331,7 +329,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-9 flex h-56 py-2 flex-col justify-between">
+            <Card className=" flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -370,7 +368,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-            <Card className="order-10 flex h-56 py-2 flex-col justify-between">
+            <Card className=" flex h-60 lg:h-56 py-2 flex-col justify-between">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-500 text-md">
                         <i>
@@ -406,7 +404,7 @@ const WeatherWidgets = ({ data, airQuality, uvIndexForToday }) => {
                     </p>
                 </CardFooter>
             </Card>
-        </>
+        </div>
     );
 };
 

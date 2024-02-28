@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import CurrentWeather from "./components/widgets/CurrentWeather";
 import ThreeHourForecast from "./components/widgets/ThreeHourForecast";
 import WeatherWidgets from "./components/widgets/WeatherWidgets";
+import AirPollution from "./components/widgets/AirPollution";
 
 function App() {
   const { state } = useContext(AppContext);
@@ -19,10 +20,10 @@ function App() {
             <CurrentWeather data={state.hourly_data} />
             <ThreeHourForecast data={state.three_hour_forecast} />
           </div>
-          <div className="grid h-full grid-cols-2 gap-4 lg:grid-cols-2">
+          <div className="flex flex-col-reverse gap-4">
+            <AirPollution airQuality={state.air_pollution} className="" />
             <WeatherWidgets
               data={state.hourly_data}
-              airQuality={state.air_pollution}
               uvIndexForToday={state.uv_index?.daily.uv_index_max[0]}
             />
           </div>

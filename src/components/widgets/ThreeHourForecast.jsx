@@ -7,7 +7,7 @@ import { Separator } from "../ui/separator";
 const ThreeHourForecast = ({ data }) => {
     return (
         <>
-            <Card className="h-fit min-h-[28rem] shrink-0">
+            <Card className="h-fit min-h-[46rem] shrink-0">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <i>
